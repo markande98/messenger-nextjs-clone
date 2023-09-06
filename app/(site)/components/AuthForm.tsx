@@ -1,5 +1,6 @@
 "use client";
 
+import Input from "@/app/components/input/Input";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
@@ -44,7 +45,31 @@ const AuthForm = () => {
     //next-auth social sign in
   };
 
-  return <div>hello</div>;
+  return (
+    <div
+      className="
+    mt-8
+    sm:mx-auto
+    sm:w-full
+    sm:max-w-md
+  "
+    >
+      <div
+        className="
+            bg-white
+            px-4
+            py-8
+            shadow
+            sm:rounded-lg
+            sm:px-10
+        "
+      >
+        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <Input label="Email" register={register} id="email" errors={errors} />
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default AuthForm;
