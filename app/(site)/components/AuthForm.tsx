@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/input/Input";
@@ -34,7 +35,7 @@ const AuthForm = () => {
     setIsloading(true);
 
     if (variant === "REGISTER") {
-      // axios register
+      axios.post('/api/register', data);
     }
 
     if (variant === "LOGIN") {
