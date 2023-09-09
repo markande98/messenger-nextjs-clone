@@ -1,4 +1,4 @@
-"use Client";
+"use client";
 
 import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
