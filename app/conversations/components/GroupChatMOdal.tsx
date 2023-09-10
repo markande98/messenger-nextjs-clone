@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/app/components/Button";
 import Modal from "@/app/components/Modal";
 import Input from "@/app/components/input/Input";
 import Select from "@/app/components/input/Select";
@@ -87,6 +88,19 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
                     />
                 </div>
             </div>
+        </div>
+        <div className="mt-6 flex items-center justify-end gap-x-6">
+            <Button 
+                disabled={isLoading}
+                secondary
+                onClick={onClose}
+                type="button"
+            >
+                Cancel
+            </Button>
+            <Button disabled={isLoading} type="submit">
+                Create
+            </Button>
         </div>
     </form>
   </Modal>;
