@@ -1,22 +1,25 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { pusherServer } from "@/app/libs/pusher";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse){
-    const session = await getServerSession(req, res, authOptions);
-    
-    if(!session?.user?.email){
-        return res.status(401);
-    }
+import { pusherServer } from "@/app/libs/pusher";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-    const socketId = req.body.socketId;
-    const channel = req.body.channel_name;
-    const data = {
-        user_id: session.user.email
-    }
+export default async function handler(
+  request: NextApiRequest, 
+  response: NextApiResponse
+) {
+  const session = await getServerSession(request, response, authOptions);
 
-    const authResponse = pusherServer.authorizeChannel(socketId, channel, data);
+  if (!session?.user?.email) {
+    return response.status(401);
+  }
 
-    return res.end(authResponse);
-}
+  const socketId = request.body.socket_id;
+  const channel = request.body.channel_name;
+  const data = {
+    user_id: session.user.email,
+  };
+
+  const authResponse = pusherServer.authorizeChannel(socketId, channel, data);
+  return response.send(authResponse);
+};
