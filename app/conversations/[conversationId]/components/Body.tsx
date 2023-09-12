@@ -60,7 +60,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
 
       pusherClient.unbind("message:update", updateMessageHandler);
     };
-  }, [conversationId, pusherClient]);
+  }, [conversationId]);
 
   return (
     <div className="flex-1 overflow-y-auto">
